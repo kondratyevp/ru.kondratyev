@@ -1,4 +1,4 @@
-package ru.kondratyev;
+package ru.kondratyev.task1;
 
 
 
