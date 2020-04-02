@@ -1,4 +1,4 @@
-package ru.kondratyev.task6;
+package ru.kondratyev.task7;
 
 import java.util.Scanner;
 
