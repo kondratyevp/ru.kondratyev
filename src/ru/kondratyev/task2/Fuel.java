@@ -14,8 +14,8 @@ public class Fuel {
         System.out.println("Введите количество бензина");
         fuel = in.nextInt();
 
-        double total = price*fuel;
-        System.out.println ("Стоимость бензина");
-        System.out.println (total);
+        double total = price * fuel;
+        System.out.println("Стоимость бензина");
+        System.out.println(total);
     }
 }
