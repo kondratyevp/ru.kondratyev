@@ -13,6 +13,6 @@ public class MinMax {
         number2 = in.nextInt();
         if (number1 < number2) System.out.println(number1 + " меньше чем " + number2);
         else if (number1 > number2) System.out.println(number2 + " меньше чем " + number1);
-        else System.out.println(number1 + " равно " + number2);
+        else System.out.println(number1 + " равно  " + number2);
     }
 }
