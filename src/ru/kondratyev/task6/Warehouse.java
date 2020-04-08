@@ -1,4 +1,4 @@
-package ru.kondratyev.task5;
+package ru.kondratyev.task6;
 
 public class Warehouse {
     public int count; // количество товара
