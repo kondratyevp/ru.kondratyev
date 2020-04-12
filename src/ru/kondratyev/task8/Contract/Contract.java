@@ -1,35 +1,49 @@
 package ru.kondratyev.task8.Contract;
 
+import java.util.Arrays;
+
 public class Contract {
     private int number;
     private String date;
     private String[] list;
 
-    {
-        list = new String[3];
-    }
-
-    public void setND(int n, String d) {
-        number = n;
-        date = d;
-    }
-
-    public void setND(String l1, String l2, String l3) {
-        list[0] = l1;
-        list[1] = l2;
-        list[2] = l3;
+    public Contract(int number, String date, String[] list) {
+        this.number = number;
+        this.date = date;
+        this.list = list;
     }
 
     public int getNumber() {
         return number;
     }
 
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public String getDate() {
         return date;
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String[] getList() {
         return list;
+    }
+
+    public void setList(String[] list) {
+        this.list = list;
+    }
+
+    @Override
+    public String toString() {
+        return "Contract{" +
+                "number=" + number +
+                ", date='" + date + '\'' +
+                ", list=" + Arrays.toString(list) +
+                '}';
     }
 }
 
