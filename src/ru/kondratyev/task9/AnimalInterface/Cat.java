@@ -1,7 +1,7 @@
 package ru.kondratyev.task9.AnimalInterface;
 
 
-class Cat extends Animal implements Run {
+class Cat extends Animal implements Runnable {
 
     public Cat(String animal) {
         super(animal);
@@ -11,7 +11,7 @@ class Cat extends Animal implements Run {
         System.out.println(getAnimal());
     }
 
-    public void getRun() {
+    public void Run() {
         System.out.println("Бегает");
     }
 }

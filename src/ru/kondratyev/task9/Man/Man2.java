@@ -1,6 +1,6 @@
 package ru.kondratyev.task9.Man;
 
-public class Man1 extends Man {
+public class Man2 extends Man {
     public int speed;
     public int time;
     public boolean skillSwim;
@@ -30,7 +30,7 @@ public class Man1 extends Man {
     }
 
     public void swim() {
-        if (this.skillSwim == true) {
+        if (skillSwim(skillSwim)) {
             System.out.println("\nПлавать умеет");
         } else {
             System.out.println("\nПлавать не умеет");

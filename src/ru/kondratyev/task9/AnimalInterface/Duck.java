@@ -1,6 +1,6 @@
 package ru.kondratyev.task9.AnimalInterface;
 
-class Duck extends Animal implements Fly, Run, Swim {
+class Duck extends Animal implements Flyable, Runnable, Swimmable {
 
     public Duck(String animal) {
         super(animal);
@@ -10,15 +10,15 @@ class Duck extends Animal implements Fly, Run, Swim {
         System.out.println(getAnimal());
     }
 
-    public void getRun() {
+    public void Run() {
         System.out.println("Бегает");
     }
 
-    public void getFly() {
+    public void Fly() {
         System.out.println("Летает");
     }
 
-    public void getSwim() {
+    public void Swim() {
         System.out.println("Плавает");
     }
 }

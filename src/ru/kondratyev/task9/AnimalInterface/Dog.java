@@ -1,7 +1,7 @@
 package ru.kondratyev.task9.AnimalInterface;
 
 
-class Dog extends Animal implements Run, Swim {
+class Dog extends Animal implements Runnable, Swimmable {
 
     public Dog(String animal) {
         super(animal);
@@ -11,11 +11,11 @@ class Dog extends Animal implements Run, Swim {
         System.out.println(getAnimal());
     }
 
-    public void getRun() {
+    public void Run() {
         System.out.println("Бегает");
     }
 
-    public void getSwim() {
+    public void Swim() {
         System.out.println("Плавает");
     }
 }

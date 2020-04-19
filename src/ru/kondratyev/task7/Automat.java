@@ -4,55 +4,38 @@ import java.util.Scanner;
 
 class Automat {
     public int money;
-    public int numDrink;
-    int i = 0;
-
-    Automat() {
-        money = 0;
-        numDrink = 0;
-
-    }
-
-    public enum Drinks {
-        ESPRESSO(1, " Эспрессо", 10),
-        KOFFEE(2, " Кофе", 15),
-        KAPPUCHINO(3, " Капучино", 20),
-        TEA(4, " Чай", 25);
-        int numDrink;
-        String nameDrink;
-        int price;
-
-        Drinks(int numDrink, String nameDrink, int price) {
-            this.nameDrink = nameDrink;
-            this.price = price;
-            this.numDrink = numDrink;
-        }
-    }
 
     public void Menu() {
         for (Drinks d : Drinks.values()) {
-            System.out.println(d.numDrink + " " + d.nameDrink + "  " + d.price);
+            System.out.println(d.ordinal() + 1 + " " + d.nameDrink + "  " + d.price);
         }
     }
 
-    public void Drink() {
+    public void buyDrink() {
+        int numberDrink = 0;
         Scanner in = new Scanner(System.in);
         if (money <= 0) {
             System.out.println("Вы не внесли деньги");
         } else {
             System.out.println("Выберите напиток: ");
-            numDrink = in.nextInt();
-        }
-        for (Drinks d : Drinks.values()) {
-            i++;
-            if (numDrink == i) {
-                System.out.println("Вы выбрали: " + d.nameDrink + " - " + d.price);
-                while (money < d.price) {
-                    System.out.println("Недостаточно денег, необходимо " + d.price + ". Внесите деньги ещё раз");
-                    money = in.nextInt();
+            numberDrink = ( in.nextInt() - 1 );
+            //}
+
+            if (numberDrink >= Drinks.values().length) {
+                System.out.println("Вы выбрали несуществующий напиток");
+            } else {
+                System.out.println("Вы выбрали: " + Drinks.values()[numberDrink].nameDrink + " - " + Drinks.values()[numberDrink].price);
+                while (money < Drinks.values()[numberDrink].price) {
+                    System.out.println("Недостаточно денег, необходимо ещё - " + ( Drinks.values()[numberDrink].price - money ));
+                    money += in.nextInt();
                 }
-                System.out.println("Заберите ваш " + d.nameDrink);
+                System.out.println("Заберите ваш " + Drinks.values()[numberDrink].nameDrink);
+                if (money > Drinks.values()[numberDrink].price) {
+                    System.out.println("Заберите вашу сдачу " + ( money - Drinks.values()[numberDrink].price ));
+                }
             }
         }
     }
 }
+
+

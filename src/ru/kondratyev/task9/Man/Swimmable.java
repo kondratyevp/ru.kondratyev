@@ -1,7 +1,7 @@
 package ru.kondratyev.task9.Man;
 
-public interface Swim {
+public interface Swimmable {
     boolean skillSwim(boolean skillSwim);
 
-    public void swim();
+    void swim();
 }

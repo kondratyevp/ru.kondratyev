@@ -9,6 +9,6 @@ public class VendingAutomat {
         Scanner in = new Scanner(System.in);
         System.out.println("Внесите деньги ");
         automat.money = in.nextInt();
-        automat.Drink();
+        automat.buyDrink();
     }
 }
