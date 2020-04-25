@@ -5,15 +5,19 @@ import java.io.IOException;
 
 public class FileAndDir {
 
+    static String s = "";
+
     static File recurs(File f) {
         if (f.isDirectory()) {
             for (File item : f.listFiles()) {
                 if (item.isDirectory()) {
-                    System.out.println(item.getName() + " \t folder");
+                    System.out.println(s + item.getName() + " \t folder");
+                    s += " ";
                     recurs(item);
                 } else {
-                    System.out.println(item.getName() + "\t file");
+                    System.out.println(s + item.getName() + "\t file");
                 }
+                //System.out.println(len);
             }
         }
         return f;
