@@ -7,12 +7,11 @@ public class Mom {
         for (i = 0; i < Food.values().length; i++) {
             System.out.println("\n" + Food.values()[i].food);
             try {
-                child1.eat(Food.values()[i].food);
-            } catch (Exception e) {
-                System.out.println("Ребёнку не нравиться " + Food.values()[i].food);
-            } finally {
-                System.out.println("Спасибо мама");
+                child1.dontWontFood(Food.values()[i]);
+            } catch (DontWantThisFoodException e) {
+                System.out.println(e.getMessage());
             }
+            child1.says();
         }
     }
 }

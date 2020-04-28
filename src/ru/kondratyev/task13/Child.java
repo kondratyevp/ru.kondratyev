@@ -1,15 +1,21 @@
 package ru.kondratyev.task13;
 
-public class Child {
-    String foodForChild;
+import java.util.ArrayList;
 
-    public void eat(String foodForChild) throws Exception {
-        if (foodForChild.equals(Food.CARROT.food)) {
-            throw new Exception();
-        } else if (foodForChild.equals(Food.KASHA.food)) {
-            throw new Exception();
-        } else {
-            System.out.println("Съел " + foodForChild + " за обе щёки");
+public class Child {
+
+    public void says() {
+        System.out.println("Спасибо мама");
+    }
+
+    public void dontWontFood(Food foodFromMom) throws DontWantThisFoodException {
+        ArrayList<Food> dontLikeList = new ArrayList<>();
+        dontLikeList.add(0, Food.CARROT);
+        dontLikeList.add(1, Food.KASHA);
+        if (dontLikeList.contains(foodFromMom)) {
+            throw new DontWantThisFoodException();
         }
     }
+
 }
+
