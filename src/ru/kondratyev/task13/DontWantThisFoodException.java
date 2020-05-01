@@ -1,10 +1,9 @@
 package ru.kondratyev.task13;
 
 public class DontWantThisFoodException extends Exception {
-    private static final String MESSAGE = "Не нравится";
+    private static final String MESSAGE = "Не нравится\nСпасибо мама";
 
-    @Override
-    public String getMessage() {
-        return MESSAGE;
+    public DontWantThisFoodException() {
+        super(MESSAGE);
     }
 }

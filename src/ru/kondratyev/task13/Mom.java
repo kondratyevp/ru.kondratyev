@@ -7,11 +7,10 @@ public class Mom {
         for (i = 0; i < Food.values().length; i++) {
             System.out.println("\n" + Food.values()[i].food);
             try {
-                child1.dontWontFood(Food.values()[i]);
+                child1.eat(Food.values()[i]);
             } catch (DontWantThisFoodException e) {
                 System.out.println(e.getMessage());
             }
-            child1.says();
         }
     }
 }

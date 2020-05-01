@@ -2,20 +2,30 @@ package ru.kondratyev.task13;
 
 import java.util.ArrayList;
 
+import static ru.kondratyev.task13.Food.CARROT;
+import static ru.kondratyev.task13.Food.KASHA;
+
 public class Child {
+
+    private ArrayList<Food> dontLikeList = new ArrayList<>();
+
+    public Child() {
+        dontLikeList.add(CARROT);
+        dontLikeList.add(KASHA);
+    }
 
     public void says() {
         System.out.println("Спасибо мама");
     }
 
-    public void dontWontFood(Food foodFromMom) throws DontWantThisFoodException {
-        ArrayList<Food> dontLikeList = new ArrayList<>();
-        dontLikeList.add(0, Food.CARROT);
-        dontLikeList.add(1, Food.KASHA);
+    public void eat(Food foodFromMom) throws DontWantThisFoodException {
         if (dontLikeList.contains(foodFromMom)) {
             throw new DontWantThisFoodException();
         }
+        System.out.println("Съел за обе щёки");
+        says();
     }
-
 }
+
+
 
