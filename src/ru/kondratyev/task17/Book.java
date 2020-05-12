@@ -3,9 +3,9 @@ package ru.kondratyev.task17;
 import java.io.Serializable;
 
 public class Book implements Serializable {
-    private String name;
-    private String author;
-    private String date;
+    private final String name;
+    private final String author;
+    private final String date;
 
     public Book(String name, String author, String date) {
         this.name = name;
@@ -25,7 +25,12 @@ public class Book implements Serializable {
         return date;
     }
 
-    public void print() {
-        System.out.println("Название: " + getName() + ", Автор: " + getAuthor() + ", Год издания: " + getDate());
+    @Override
+    public String toString() {
+        return "Книга {" +
+                "Название: '" + name + '\'' +
+                ", автор: '" + author + '\'' +
+                ", год издания: '" + date + '\'' +
+                '}';
     }
 }
