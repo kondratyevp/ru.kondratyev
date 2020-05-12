@@ -1,38 +1,32 @@
 package ru.kondratyev.task18;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.Charset;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Encoding {
 
-    private static String s1;
-
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         try {
-            String stroka1 = new String("Наша Таня громко плачет,\nУронила в речку мячик.");
-            byte[] stroka2 = stroka1.getBytes("UTF-8");
-            System.out.println(stroka2);
-            FileOutputStream fos = new FileOutputStream("D:\\NewFolder\\text.txt");
+            String stroka1 = "Наша Таня громко плачет,\nУронила в речку мячик.";
+            byte[] stroka2 = stroka1.getBytes(UTF_8);
+            FileOutputStream fos = new FileOutputStream("out" + File.separator + "text.txt");
             fos.write(stroka2);
             fos.flush();
         } catch (IOException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
-        try (FileInputStream in = new FileInputStream("D:\\NewFolder\\text.txt");
-             FileOutputStream fos = new FileOutputStream("D:\\NewFolder\\newtext.txt")) {
-            byte[] buffer = new byte[in.available()];
-            in.read(buffer);
-            Charset utf8 = Charset.forName("UTF-8");
-            String s1 = new String(buffer, utf8);
-            System.out.println(s1);
-            buffer = s1.getBytes("Windows-1251");
-            fos.write(buffer);
-            fos.flush();
-            System.out.println(buffer);
+        try (BufferedReader br = new BufferedReader(new FileReader("out" + File.separator + "text.txt", UTF_8));
+             BufferedWriter bw = new BufferedWriter(new FileWriter
+                     ("out" + File.separator + "newtext.txt", Charset.forName("Windows-1251")))) {
+            String s;
+            while (( s = br.readLine() ) != null) {
+                System.out.println(s);
+                bw.write(s + "\n");
+            }
         } catch (IOException e) {
-            e.getMessage();
+            e.printStackTrace();
         }
     }
 }
