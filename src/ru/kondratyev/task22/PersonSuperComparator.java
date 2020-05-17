@@ -2,10 +2,15 @@ package ru.kondratyev.task22;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 public class PersonSuperComparator {
+
+    public static void printPersons(List<Person> persons) {
+        for (Person person : persons)
+            System.out.println(person);
+        System.out.println();
+    }
 
     public static void main(String[] args) {
 
@@ -19,23 +24,16 @@ public class PersonSuperComparator {
         persons.add(person2);
         persons.add(person3);
 
-        Iterator<Person> i = persons.iterator();
-
         System.out.println("Без сортировки:");
-        while (i.hasNext())
-            System.out.println(i.next());
-        System.out.println();
+        printPersons(persons);
 
         System.out.println("Сортировка по имени:");
         Collections.sort(persons);
-        for (Person person : persons)
-            System.out.println(person);
-        System.out.println();
+        printPersons(persons);
 
         System.out.println("Сортировка по возрасту:");
         persons.sort(new AgeComparator());
-        for (Person person : persons)
-            System.out.println(person);
+        printPersons(persons);
     }
 
 }
