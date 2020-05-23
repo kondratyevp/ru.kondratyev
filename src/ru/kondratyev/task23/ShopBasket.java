@@ -1,107 +1,86 @@
 package ru.kondratyev.task23;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class ShopBasket implements Basket {
 
-    static List<Product> products = new ArrayList<>();
+    private List<Product> productsInBasket = new ArrayList<>();
+    private List<Integer> quantities = new ArrayList<>();
 
-    public void addProduct(String product, int quantity) { //ok ok
-
-        products.add(new Product(product, quantity));
+    public List<Product> getProductsInBasket() {
+        return productsInBasket;
     }
 
-    public void removeProduct(String product) { //ok ok
-        Iterator iterator = products.iterator();
+    public List<Integer> getQuantities() {
+        return quantities;
+    }
+
+    public int findProduct(String product) {
+        for (Product p : productsInBasket) {
+            if (p.getName().equals(product))
+                return productsInBasket.indexOf(p);
+        }
+        return -1;
+    }
+
+    public void addProduct(String product, int quantity) { //ok
+        int i = findProduct(product); //productsInBasket.indexOf(new Product(product));
+        if (i != -1) {
+            quantities.set(i, quantity);
+        } else {
+            productsInBasket.add(new Product(product));
+            quantities.add(quantity);
+        }
+    }
+
+    public void removeProduct(String product) {//ok
+        Iterator iterator = productsInBasket.iterator();
         while (iterator.hasNext()) {
-            Product setProduct = (Product) iterator.next();
-            String s = setProduct.getName();
-            if (s.equals(product))
+            Product p = (Product) iterator.next();
+            String s = p.getName();
+            if (s.equals(product)) {
+                int i = productsInBasket.indexOf(p);
+                quantities.remove(i);
                 iterator.remove();
+            }
         }
     }
 
-    public void updateProductQuantity(String product, int quantity) { //ok ok
-        Iterator iterator = products.iterator();
-        while (iterator.hasNext()) {
-            Product setProduct = (Product) iterator.next();
-            String s = setProduct.getName();
-            if (s.equals(product))
-                setProduct.setQuantity(quantity);
-        }
+    public void updateProductQuantity(String product, int quantity) {
+        int i = findProduct(product);
+        if (i != -1)
+            quantities.set(i, quantity);
     }
 
-    public void clear() { //ok
-        products.clear();
+    public void clear() {
+        productsInBasket.clear();
+        quantities.clear();
     }
 
-
-    public List<String> getProducts() { //ok ok
+    public List<String> getProducts() {
         List<String> getProducts = new ArrayList<>();
-        Iterator iterator = products.iterator();
-        String s = new String();
-        while (iterator.hasNext()) {
-            Product setProduct = (Product) iterator.next();
-            s = setProduct.getName();
-            getProducts.add(s);
+        for (Product p : productsInBasket) {
+            getProducts.add(p.getName());
         }
-        for (String product : getProducts)
-            System.out.println(product);
-        System.out.println();
+        System.out.println(getProducts);
         return getProducts;
     }
 
-    public int getProductQuantity(String product) { //ok ok
-        Iterator iterator = products.iterator();
-        int getProductQuantity = 0;
-        while (iterator.hasNext()) {
-            Product setProduct = (Product) iterator.next();
-            String s = setProduct.getName();
-            if (s.equals(product)) {
-                getProductQuantity = setProduct.getQuantity();
-            }
-        }
-        System.out.println("" + product + " = " + getProductQuantity);
-        System.out.println();
-        return getProductQuantity;
+    public int getProductQuantity(String product) {
+        int i = findProduct(product);
+        if (i != -1)
+            System.out.println("" + product + " = " + quantities.get(i));
+        return i;
     }
 
-    public static void printProducts(List<Product> products) {
-        for (Product product : products)
-            System.out.println(product);
-        System.out.println();
-    }
-
-    public static void main(String[] args) {
-
-        ShopBasket sb = new ShopBasket();
-
-        sb.addProduct("Яблоко", 10);
-        sb.addProduct("Груша", 15);
-        sb.addProduct("Апельсин", 20);
-
-        System.out.println("Корзина:");
-        printProducts(products);
-
-        System.out.println("Удаления яблок из корзины:");
-        sb.removeProduct("Яблоко");
-        printProducts(products);
-
-        System.out.println("Изменение количества груш:");
-        sb.updateProductQuantity("Груша", 30);
-        printProducts(products);
-
-        System.out.println("Получения списка товаров в корзине:");
-        sb.getProducts();
-
-        System.out.println("Количество выбранного товара:");
-        sb.getProductQuantity("Апельсин");
-
-        System.out.println("Очистка корзины:");
-        sb.clear();
-        printProducts(products);
+    @Override
+    public String toString() {
+        return "ShopBasket{" +
+                "productsInBasket=" + productsInBasket +
+                ", quantities=" + quantities +
+                '}';
     }
 }
+
