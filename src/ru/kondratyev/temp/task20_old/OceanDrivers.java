@@ -1,4 +1,4 @@
-package ru.kondratyev.task20;
+package ru.kondratyev.temp.task20_old;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
