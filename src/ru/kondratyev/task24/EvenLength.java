@@ -1,17 +1,17 @@
 package ru.kondratyev.task24;
 
-import java.util.LinkedList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class EvenLength {
 
-    private static LinkedList<String> strings;
+    private static Set<String> strings;
 
-    public static LinkedList<String> removeEvenLength(LinkedList<String> set) {
-        LinkedList<String> removeEvenLength = new LinkedList<>();
-        removeEvenLength.addAll(set);
+    public Set<String> removeEvenLength(Set<String> set) {
+        Set<String> removeEvenLength = new HashSet<>();
         for (String s : set) {
-            if (s.length() % 2 == 0)
-                removeEvenLength.remove(s);
+            if (!( s.length() % 2 == 0 ))
+                removeEvenLength.add(s);
         }
         return removeEvenLength;
     }
@@ -24,7 +24,8 @@ public class EvenLength {
     }
 
     public static void main(String[] args) {
-        strings = new LinkedList<>();
+        EvenLength el = new EvenLength();
+        strings = new HashSet<>();
         strings.add("foo");
         strings.add("buzz");
         strings.add("bar");
@@ -35,10 +36,10 @@ public class EvenLength {
         strings.add("dude");
         System.out.println("Первоначальный вариант множества:");
         System.out.println(strings);
-        removeEvenLength(strings);
+        el.removeEvenLength(strings);
         System.out.println();
         System.out.println("Множество после метода removeEvenLength:");
-        System.out.println(removeEvenLength(strings));
+        System.out.println(el.removeEvenLength(strings));
     }
 
 }
