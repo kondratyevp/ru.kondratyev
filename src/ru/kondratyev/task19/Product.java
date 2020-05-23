@@ -2,27 +2,25 @@ package ru.kondratyev.task19;
 
 public class Product {
     private String name;
-    private String quantity;
-    private String price;
+    private double quantity;
+    private double price;
 
-    public Product(String name, String quantity, String price) {
+    public Product(String name, double quantity, double price) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
     }
 
-    public Product() {
-    }
 
     public String getName() {
         return name;
     }
 
-    public String getQuantity() {
+    public double getQuantity() {
         return quantity;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 

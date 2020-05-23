@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static java.lang.Double.parseDouble;
-
 public class Check {
 
     public static List<Product> getProducts(String path) throws FileNotFoundException {
@@ -20,7 +18,10 @@ public class Check {
         List<Product> products = new ArrayList<>();
         scanner.useDelimiter("\n");
         while (scanner.hasNext()) {
-            products.add(new Product(scanner.next(), scanner.next(), scanner.next()));
+            final String name = scanner.next();
+            final double quantity = Double.parseDouble(scanner.next());
+            final double price = Double.parseDouble(scanner.next());
+            products.add(new Product(name, quantity, price));
         }
         scanner.close();
         return products;
@@ -32,7 +33,7 @@ public class Check {
             System.out.printf("%-20s%-10s%-15s%-10s\n", "Наименование", "Цена", "Количество", "Стоимость");
             System.out.print("======================================================\n");
             for (Product product : getProducts("resource" + File.separator + "products.txt")) {
-                BigDecimal summa = BigDecimal.valueOf(( parseDouble(product.getPrice()) ) * ( parseDouble(product.getQuantity()) ));
+                BigDecimal summa = BigDecimal.valueOf(product.getPrice() * product.getQuantity());
                 System.out.printf("%1$-20s%4$-7s%3$s%2$-15s%5$-10.2f\n",
                         product.getName(), product.getQuantity(), "x  ", product.getPrice(), summa);
                 total = total.add(summa).setScale(2, RoundingMode.HALF_DOWN);
