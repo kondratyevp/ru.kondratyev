@@ -1,41 +1,14 @@
 package ru.kondratyev.task22;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Comparator;
 
-public class PersonSuperComparator {
+public class PersonSuperComparator implements Comparator<Person> {
 
-    public static void printPersons(List<Person> persons) {
-        for (Person person : persons)
-            System.out.println(person);
-        System.out.println();
+    @Override
+    public int compare(Person p1, Person p2) {
+        if (!( p1.getName().equals(p2.getName()) ))
+            return p1.getName().compareTo(p2.getName());
+        return p1.getAge() - ( p2.getAge() );
     }
-
-    public static void main(String[] args) {
-
-        Person person1 = new Person("Dan", 40);
-        Person person2 = new Person("Jon", 30);
-        Person person3 = new Person("Bob", 20);
-
-        List<Person> persons = new ArrayList<>();
-
-        persons.add(person1);
-        persons.add(person2);
-        persons.add(person3);
-
-        System.out.println("Без сортировки:");
-        printPersons(persons);
-
-        System.out.println("Сортировка по имени:");
-        Collections.sort(persons);
-        printPersons(persons);
-
-        System.out.println("Сортировка по возрасту:");
-        persons.sort(new AgeComparator());
-        printPersons(persons);
-    }
-
 }
-
 
