@@ -9,24 +9,9 @@ public class ShopBasket implements Basket {
     private List<Product> productsInBasket = new ArrayList<>();
     private List<Integer> quantities = new ArrayList<>();
 
-    public List<Product> getProductsInBasket() {
-        return productsInBasket;
-    }
 
-    public List<Integer> getQuantities() {
-        return quantities;
-    }
-
-    public int findProduct(String product) {
-        for (Product p : productsInBasket) {
-            if (p.getName().equals(product))
-                return productsInBasket.indexOf(p);
-        }
-        return -1;
-    }
-
-    public void addProduct(String product, int quantity) { //ok
-        int i = findProduct(product); //productsInBasket.indexOf(new Product(product));
+    public void addProduct(String product, int quantity) {
+        int i = indexOfProduct(product);
         if (i != -1) {
             quantities.set(i, quantity);
         } else {
@@ -35,7 +20,7 @@ public class ShopBasket implements Basket {
         }
     }
 
-    public void removeProduct(String product) {//ok
+    public void removeProduct(String product) {
         Iterator iterator = productsInBasket.iterator();
         while (iterator.hasNext()) {
             Product p = (Product) iterator.next();
@@ -49,7 +34,7 @@ public class ShopBasket implements Basket {
     }
 
     public void updateProductQuantity(String product, int quantity) {
-        int i = findProduct(product);
+        int i = indexOfProduct(product);
         if (i != -1)
             quantities.set(i, quantity);
     }
@@ -64,15 +49,22 @@ public class ShopBasket implements Basket {
         for (Product p : productsInBasket) {
             getProducts.add(p.getName());
         }
-        System.out.println(getProducts);
         return getProducts;
     }
 
     public int getProductQuantity(String product) {
-        int i = findProduct(product);
+        int i = indexOfProduct(product);
         if (i != -1)
-            System.out.println("" + product + " = " + quantities.get(i));
-        return i;
+            return quantities.get(i);
+        return 0;
+    }
+
+    private int indexOfProduct(String product) {
+        for (Product p : productsInBasket) {
+            if (p.getName().equals(product))
+                return productsInBasket.indexOf(p);
+        }
+        return -1;
     }
 
     @Override

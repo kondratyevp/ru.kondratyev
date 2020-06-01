@@ -24,11 +24,11 @@ public class Main {
         sb.updateProductQuantity("Груша", 30);
         System.out.println(sb);
         System.out.println();
-        System.out.println("Получения списка товаров в корзине:");
-        sb.getProducts();
+        System.out.println("Получение списка товаров в корзине:");
+        System.out.println(sb.getProducts());
         System.out.println();
         System.out.println("Количество выбранного товара:");
-        sb.getProductQuantity("Апельсин");
+        System.out.println("" + "Апельсин" + " = " + sb.getProductQuantity("Апельсин"));
         System.out.println();
         System.out.println("Очистка корзины:");
         sb.clear();
