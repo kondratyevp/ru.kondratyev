@@ -1,30 +1,24 @@
 package ru.kondratyev.task25.task25_2;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ShopBasket implements Basket {
 
     private Map<String, Integer> productsInBasket = new HashMap<>();
-
-    public Map<String, Integer> getProductsInBasket() {
-        return productsInBasket;
-    }
 
     public void addProduct(String product, int quantity) {
         productsInBasket.put(product, quantity);
     }
 
     public void removeProduct(String product) {
-        Iterator<String> iterator = productsInBasket.keySet().iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next().equals(product)) {
-                iterator.remove();
-            }
-        }
+        productsInBasket.remove(product);
     }
 
     public void updateProductQuantity(String product, int quantity) {
-        productsInBasket.put(product, quantity);
+        productsInBasket.replace(product, quantity);
     }
 
     public void clear() {
@@ -32,20 +26,12 @@ public class ShopBasket implements Basket {
     }
 
     public List<String> getProducts() {
-        List<String> getProducts = new ArrayList<>();
-        for (Map.Entry<String, Integer> e : productsInBasket.entrySet())
-            getProducts.add(e.getKey());
-        System.out.println(getProducts);
+        List<String> getProducts = new ArrayList<>(productsInBasket.keySet());
         return getProducts;
     }
 
     public int getProductQuantity(String product) {
-        for (Map.Entry<String, Integer> e : productsInBasket.entrySet())
-            if (e.getKey().equals(product)) {
-                System.out.println("" + product + " = " + e.getValue());
-                return e.getValue();
-            }
-        return 0;
+        return productsInBasket.get(product);
     }
 
     @Override

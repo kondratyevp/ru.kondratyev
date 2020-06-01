@@ -1,5 +1,7 @@
 package ru.kondratyev.task25.task25_1;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,16 +10,10 @@ public class Unique {
     private Map<String, String> men = new HashMap<>();
 
     public boolean isUnique(Map<String, String> map) {
-        if (!map.isEmpty()) {
-            for (Object value1 : map.values()) {
-                int i = 0;
-                for (Object value2 : map.values()) {
-                    if (value1.equals(value2))
-                        i++;
-                }
-                if (i > 1)
-                    return false;
-            }
+        ArrayList values = new ArrayList<>(map.values());
+        for (Object value1 : values) {
+            int i = Collections.frequency(values, value1);
+            if (i > 1) return false;
         }
         return true;
     }
