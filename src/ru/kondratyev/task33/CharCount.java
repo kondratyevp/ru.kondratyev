@@ -1,13 +1,10 @@
 package ru.kondratyev.task33;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class CharCount {
 
-    private static Map<Character, Integer> maxChar(String str) {
+    private static Map<Character, Integer> countChars(String str) {
         Map<Character, Integer> chars = new TreeMap<>();
         for (char ch : str.toCharArray())
             if (chars.containsKey(ch)) {
@@ -16,10 +13,12 @@ public class CharCount {
         return chars;
     }
 
-    private static void maxCharInString(Map<Character, Integer> map) {
-        ArrayList values = new ArrayList<>(map.values());
-        Collections.sort(values);
-        int i = (int) values.get(values.size() - 1);
+    private static int maxChar(Map<Character, Integer> map) {
+        List<Integer> values = new ArrayList<>(map.values());
+        return Collections.max(values);
+    }
+
+    private static void printMaxChars(int i, Map<Character, Integer> map) {
         for (Map.Entry<Character, Integer> pair : map.entrySet()) {
             if (i == ( pair.getValue() )) {
                 System.out.println("Character: " + pair.getKey() + " has occurred maximum times in String: " + pair.getValue());
@@ -29,7 +28,8 @@ public class CharCount {
 
     public static void main(String[] args) {
         String s = "This is test message";
-        maxCharInString(maxChar(s));
+        final Map<Character, Integer> map = countChars(s);
+        printMaxChars(maxChar(map), map);
     }
 }
 
