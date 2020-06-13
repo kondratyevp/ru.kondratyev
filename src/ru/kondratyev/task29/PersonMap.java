@@ -1,6 +1,9 @@
 package ru.kondratyev.task29;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public class PersonMap {
 
@@ -22,18 +25,15 @@ public class PersonMap {
     public static void removeTheDuplicates(Map<String, Person> map) {
         Set<Person> personSet = new HashSet<>();
         Map<String, Person> copyMap = new HashMap<>(map);
-        Iterator iterator = copyMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry entry = (Map.Entry) iterator.next();
-            String key = (String) entry.getKey();
-            Person p = (Person) entry.getValue();
+        for (Map.Entry<String, Person> entry : copyMap.entrySet()) {
+            String key = entry.getKey();
+            Person p = entry.getValue();
             if (!personSet.add(p)) {
                 removeItemFromMapByValue(map, p);
                 map.put(key, p);
             }
         }
-        System.out.println();
-        System.out.println(map);
+
     }
 
     public static void removeItemFromMapByValue(Map<String, Person> map, Person value) {

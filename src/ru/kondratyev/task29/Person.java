@@ -1,5 +1,7 @@
 package ru.kondratyev.task29;
 
+import java.util.Objects;
+
 public class Person {
 
     private int age;
@@ -41,8 +43,8 @@ public class Person {
         Person person = (Person) o;
 
         if (age != person.age) return false;
-        if (surname != null ? !surname.equals(person.surname) : person.surname != null) return false;
-        return gender != null ? gender.equals(person.gender) : person.gender == null;
+        if (!Objects.equals(surname, person.surname)) return false;
+        return Objects.equals(gender, person.gender);
     }
 
     @Override
