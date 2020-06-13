@@ -16,13 +16,13 @@ public class Fibonacci {
         fibonacciRecurs(0, 1, num);
     }
 
-    private static int fibonacciRecurs(int p2, int p1, int num) {
+    private static void fibonacciRecurs(int p2, int p1, int num) {
         if (num != 0) {
             System.out.print(p2 + " ");
             p2 = p2 + p1;
-            p1 = fibonacciRecurs(p2, p2 - p1, num - 1);
+            fibonacciRecurs(p2, p2 - p1, num - 1);
         }
-        return p2;
+
     }
 
     public static void main(String[] args) {
