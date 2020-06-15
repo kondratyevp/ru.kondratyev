@@ -3,22 +3,7 @@ package ru.kondratyev.task32;
 public class Tree {
 
     Node root;
-
-    public Node find(int key) {
-        Node current = root;
-        while (current.key != key) {
-            if (current.key < key) {
-                current = current.leftChild;
-            } else {
-                current = current.rightChild;
-            }
-            if (current == null) {
-                return null;
-            }
-        }
-        return current;
-    }
-
+    int i = 0;
 
     public void insert(int key, String data) {
         Node node = new Node();
@@ -28,7 +13,7 @@ public class Tree {
             root = node;
         } else {
             Node current = root;
-            Node prev = null;
+            Node prev;
             while (true) {
                 prev = current;
                 if (key < prev.key) {
@@ -48,26 +33,20 @@ public class Tree {
         }
     }
 
-    public void findSheet(Node startNode) {
-        if (( startNode.leftChild != null ) & ( startNode.rightChild != null )) {
-            findSheet(startNode.leftChild);
-            findSheet(startNode.rightChild);
+    public int countLeaves(Node startNode) {
+        if (startNode.leftChild != null) {
+            countLeaves(startNode.leftChild);
+            if (startNode.rightChild != null)
+                countLeaves(startNode.rightChild);
         } else {
-            if (( startNode.leftChild != null ) & ( startNode.rightChild == null )) {
-                findSheet(startNode.leftChild);
-            } else {
-                if (startNode.rightChild != null) {
-                    findSheet(startNode.rightChild);
-                } else {
-                    System.out.println(startNode);
-                }
-
-            }
+            i++;
         }
+        return i;
     }
 
+
     public static void main(String[] args) {
-        ru.kondratyev.task32.Tree tree = new ru.kondratyev.task32.Tree();
+        Tree tree = new Tree();
         tree.insert(3, "a");
         tree.insert(8, "b");
         tree.insert(1, "c");
@@ -76,8 +55,8 @@ public class Tree {
         tree.insert(7, "f");
         tree.insert(4, "g");
         tree.insert(0, "h");
-        Node findJohn = tree.find(3);
-        tree.findSheet(findJohn);
+        final int leaves = tree.countLeaves(tree.root);
+        System.out.println("The tree have " + leaves + " leaves");
     }
 }
 
