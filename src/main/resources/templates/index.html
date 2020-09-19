@@ -6,10 +6,16 @@
 </head>
 <body>
 <table>
+    <form>
+        <label for="site-search">Search the site:</label>
+        <input type="search" id="site-search" name="q"
+               aria-label="Search through site content" th:value="${q}">
+        <input type="submit" value="Поиск заметки">
+    </form>
     <thead>
     <tr>
-        <th> Title </th>
-        <th> Text </th>
+        <th> Заголовок </th>
+        <th> Удалить </th>
     </tr>
     </thead>
     <tbody>
@@ -17,10 +23,23 @@
         <td colspan="2"> No Books Available </td>
     </tr>
     <tr th:each="note : ${notes}">
-        <td><span th:text="${note.title}"> Title </span></td>
-        <td><span th:text="${note.text}"> Author </span></td>
+        <td th:if="${note.title !=''}"><span th:text="${note.title}"> Title </span></td>
+        <td th:if ="${note.title ==''}"><span th:text="${note.text}"> Author </span></td>
+        <td>
+            <form action="/delete" method="post">
+                <input type="hidden" id="vehicle1" name="fordelete" th:value="${note.id}">
+                <input type="submit" value="Удалить заметку">
+        </form></td>
     </tr>
     </tbody>
 </table>
+<form action="/appendnew" method="post">
+    <label for="fname">Title:</label><br>
+    <input type="text" id="fname" name="title" ><br>
+    <label for="lname">Text:</label><br>
+    <input type="text" id="lname" name="text"><br><br>
+    <input type="submit" value="Добавить заметку">
+</form>
+<p th:if="${emptymessage!=null}"><span th:text="${emptymessage}"></span></p>
 </body>
 </html>
